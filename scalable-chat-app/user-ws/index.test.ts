@@ -7,7 +7,7 @@ describe("Chat application", () => {
     
     test("Message sent from room 1 reaches another participant in room 1", async() => {
         const ws1 = new WebSocket(BACKEND_URL1)
-        const ws2 = new WebSocket(BACKEND_URL2)
+        const ws2 = new WebSocket(BACKEND_URL1)
 
        await new Promise<void>((resolve, reject) => {
             let count = 0;

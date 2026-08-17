@@ -21,7 +21,7 @@ wss.on('connection', function connection(ws) {
         const room =parsedData.room;
         if(!rooms[room]){
             rooms[room] = {
-                sockets:[]
+                sockets:[] 
             }
         }
         rooms[room].sockets.push(ws);
