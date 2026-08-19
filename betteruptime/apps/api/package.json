@@ -9,8 +9,11 @@
   },
   "dependencies": {
     "@types/express": "^5.0.6",
+    "@types/jsonwebtoken": "^9.0.10",
+    "dotenv": "^17.4.2",
     "express": "^5.2.1",
-    "store": "workspace:*"
+    "store": "*",
+    "zod": "^4.4.3"
   },
   "devDependencies": {
     "@types/bun": "latest"
