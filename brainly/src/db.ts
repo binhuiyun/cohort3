@@ -17,7 +17,7 @@ const ContentSchema = new Schema({
 })
 
 const LinkSchema = new Schema({
-    hasg: String,
+    hash: String,
     userId: {type:mongoose.Types.ObjectId, ref:"User", required: true, unique:true}
 })
 
