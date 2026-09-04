@@ -1,23 +1,20 @@
-import { NextFunction, Request,Response } from "express";
-import jwt, {JwtPayload} from "jsonwebtoken";
-import { JWT_PASSWORD } from "./config.js";
+import { NextFunction, Request, Response } from "express";
+import jwt from "jsonwebtoken";
+import { JWT_SECRET } from "@repo/backend-common/config";
 
-export const userMiddleware = (req: Request, res: Response, next: NextFunction) =>{
-    const header = req.headers["authorization"];
-    const decoded = jwt.verify(header as string, JWT_PASSWORD)
+
+export function middleware(req: Request, res: Response, next: NextFunction) {
+    const token = req.headers["authorization"] ?? "";
+
+    const decoded = jwt.verify(token, JWT_SECRET);
+
     if (decoded) {
-        if (typeof decoded === "string") {
-            res.status(403).json({
-                message: "You are not logged in"
-            })
-            return;    
-        }
-        req.userId = (decoded as JwtPayload).id;
-        next()
-        console.log("auth success")
+        // @ts-ignore: TODO: Fix this
+        req.userId = decoded.userId;
+        next();
     } else {
         res.status(403).json({
-            message: "You are not logged in"
+            message: "Unauthorized"
         })
     }
 }

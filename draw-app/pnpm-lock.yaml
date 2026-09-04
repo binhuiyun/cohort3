@@ -114,7 +114,7 @@ importers:
   packages/backend-common:
     dependencies:
       '@types/node':
-        specifier: ^26.4.1
+        specifier: 26.4.1
         version: 26.4.1
     devDependencies:
       '@repo/typescript-config':
