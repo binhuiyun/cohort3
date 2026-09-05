@@ -1,5 +1,6 @@
 import express from "express";
 import jwt from "jsonwebtoken";
+import "dotenv/config";
 import { JWT_SECRET } from '@repo/backend-common/config';
 import { middleware } from "./middleware";
 import { CreateUserSchema, SigninSchema, CreateRoomSchema } from "@repo/common/types";
@@ -7,6 +8,9 @@ import { prismaClient } from "@repo/db/client";
 import cors from "cors"
 
 const app = express();
+app.use(express.json());
+app.use(cors())
+
 
 app.post("/api/v1/signup", async (req, res) => {
    const parsedData = CreateUserSchema.safeParse(req.body);
@@ -30,6 +34,7 @@ app.post("/api/v1/signup", async (req, res) => {
             userId: user.id
         })
     } catch(e) {
+        console.log(e);
         res.status(411).json({
             message: "User already exists with this username"
         })
